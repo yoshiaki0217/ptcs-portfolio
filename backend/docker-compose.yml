@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    container_name: nginx
+    container_name: ptcs-nginx
     build:
       context: .
       dockerfile: docker/nginx/Dockerfile
@@ -14,7 +14,7 @@ services:
     depends_on:
       - php
   php:
-    container_name: php
+    container_name: ptcs-php
     build:
       context: .
       dockerfile: docker/php/Dockerfile
@@ -27,7 +27,7 @@ services:
     working_dir: /var/www/html
 #    command: 'php artisan serve --host 0.0.0.0'
   mysql:
-    container_name: mysql
+    container_name: ptcs-mysql
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: root
