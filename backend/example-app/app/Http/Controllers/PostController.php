@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -24,9 +26,17 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+      Post::create([
+        'id'      => 1,
+        'user_id' => 1,
+        'text'    => $request->text
+      ]);
+
+      $res = Post::all();
+      
+      return response()->json($res);
     }
 
     /**
