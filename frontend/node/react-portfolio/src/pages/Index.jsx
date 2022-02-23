@@ -20,14 +20,19 @@ export const Index = () => {
   return (
     <section className="py-20">
       <div>
-        <h2 className="text-center text-2xl">サラリーマン川柳</h2>
+        <div className="mb-12">
+          <h2 className="text-center text-4xl">川柳一覧</h2>
+        </div>
         <PostList className='m-auto'>
+          <Link to="/post" className="py-2 mb-4 bg-amber-200 w-20 text-center block">
+            投稿する
+          </Link>
         {
           postData.map((data,index) => {
             return (
               <li className="flex justify-between">
                 <p className="py-10 text-xl">{data.text}</p>
-                <div className="text-sm w-60 flex justify-end pb-3 flex-col">
+                <div className="text-sm w-40 flex justify-end pb-3 flex-col">
                   <p className="text-sm">
                     {data.user_name}
                   </p>
@@ -40,9 +45,6 @@ export const Index = () => {
           })
         }
           </PostList>
-        <Link to="/post">
-          投稿する
-        </Link>
       </div>
     </section>
   )
@@ -51,6 +53,9 @@ export const Index = () => {
 
 const PostList = styled.ul`
   width: 60rem;
+  a{
+    margin: 0 0 1rem auto;
+  }
   li{
     border-top:solid 1px rgb(203 213 225);
   }
