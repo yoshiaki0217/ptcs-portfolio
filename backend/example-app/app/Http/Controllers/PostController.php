@@ -18,24 +18,16 @@ class PostController extends Controller
      */
     public function index()
     {
-      $res = Post::with('userPost')->get()->map(function ($data){
+      $res = Post::with('userPost')->orderByDesc('created_at')->get()->map(function ($data){
         return [
           'id'         => $data->id,
           'user_id'    => $data->user_id,
-          'user_name'  => $data->userPost->name,
+          'user_name'  => $data->user_name,
           'text'       => $data->text,
           'created_at' => $data->created_at->format('Y/m/d'),
           'updated_at' => $data->updated_at,
         ];
       });
-
-      logger()->info('--------ここから--------');
-      logger()->info($res);
-      logger()->info('--------ここまで--------');
-      // $post = Post::all();
-      // $user = User::all();
-      // $res = Post::all();
-      // Log::debug($res);
 
         return response()->json($res);
     }
@@ -48,14 +40,14 @@ class PostController extends Controller
     public function create(Request $request)
     {
       Post::create([
-        'id'      => 1,
-        'user_id' => 1,
-        'text'    => $request->text
+      'id'        => 14,
+      'user_name' => $request->name,
+      'text'      => $request->text,
       ]);
 
-      $res = Post::all();
+      // $res = Post::all();
 
-      return response()->json($res);
+      return response()->json($request->name);
     }
 
     /**
