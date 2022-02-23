@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -17,8 +18,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
-        return response()->json($post);
+      $res = Post::with('userPost')->orderByDesc('created_at')->get()->map(function ($data){
+        return [
+          'id'         => $data->id,
+          'user_id'    => $data->user_id,
+          'user_name'  => $data->user_name,
+          'text'       => $data->text,
+          'created_at' => $data->created_at->format('Y/m/d'),
+          'updated_at' => $data->updated_at,
+        ];
+      });
+
+        return response()->json($res);
     }
 
     /**
@@ -29,14 +40,14 @@ class PostController extends Controller
     public function create(Request $request)
     {
       Post::create([
-        'id'      => 1,
-        'user_id' => 1,
-        'text'    => $request->text
+      'id'        => 14,
+      'user_name' => $request->name,
+      'text'      => $request->text,
       ]);
 
-      $res = Post::all();
-      
-      return response()->json($res);
+      // $res = Post::all();
+
+      return response()->json($request->name);
     }
 
     /**
