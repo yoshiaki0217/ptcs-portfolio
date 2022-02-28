@@ -1,19 +1,20 @@
-# ポートフォリオ
+## 環境構築
+```
+# プロジェクトをcloneする
+$ git clone https://github.com/JuriMatsuda/kobushidegun-hp-backend.git
 
-### サービス概要
-「」は疲れているときにクスッと笑わして元気にしてくれるサイトです。
-また、自分が思いついた面白い川柳を投稿してみんなに見てもらえるサイトです。
+# ディレクトリ移動
+$ cd kobushidegun-hp-backend
 
-### 技術スタック
-#### **【言語】**
-PHP(Laravel)/JavaScript(React)
-#### **【DB】**
-Mysql
-#### **【環境構築】**
-docker
+# dockerビルド
+$ docker-compose build
 
-### 機能一覧
-- ログイン
-- 川柳の投稿閲覧
-- 川柳の投稿/編集/削除
-- お気に入り登録
+# コンテナ起動(コンテナ停止は Ctrl + c)
+$ make serve
+
+# phpコンテナに入る
+$ make login-php
+
+# 初回のみ実行
+$ make build-local
+```
