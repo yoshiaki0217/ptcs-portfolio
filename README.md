@@ -6,6 +6,9 @@ $ git clone https://github.com/yoshiaki0217/ptcs-portfolio.git
 # ディレクトリ移動
 $ cd ptcs-portfolio/backend
 
+# dockerビルド
+$ docker-compose build
+
 # コンテナの中に入ってcomposerをインストール
 $ make serve
 $ make login
