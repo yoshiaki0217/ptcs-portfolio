@@ -9,6 +9,9 @@ $ cd ptcs-portfolio/backend
 # dockerビルド
 $ docker-compose build
 
+*M1の場合エラーが出る可能性があるので以下リンクに対処法が記載されているので試してみてください。  
+https://qiita.com/hamuki72718/items/328b09308f73f5ace397
+
 # コンテナの中に入ってcomposerをインストール
 $ make serve
 $ make login
